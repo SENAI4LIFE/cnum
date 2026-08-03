@@ -14,6 +14,6 @@ commit = subprocess.run(
 if commit.returncode != 0:
     print("Nothing to commit.")
 
-subprocess.run(["git", "push", "origin", "main"], check=True)
+subprocess.run(["git", "push", "origin", "semana1"], check=True)
 
 print("Done.")
