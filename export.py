@@ -5,6 +5,9 @@ if not message:
     message = "update"
 
 branch = input("Branch name: ").strip()
+while not branch:
+    print("Branch name cannot be empty.")
+    branch = input("Branch name: ").strip()
 
 subprocess.run(["git", "add", "-A"], check=True)
 
