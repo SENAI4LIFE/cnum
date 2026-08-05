@@ -4,9 +4,7 @@ message = input("Commit message [update]: ").strip()
 if not message:
     message = "update"
 
-branch = input("Branch name [semana1]: ").strip()
-if not branch:
-    branch = "semana1"
+branch = input("Branch name: ").strip()
 
 subprocess.run(["git", "add", "-A"], check=True)
 
