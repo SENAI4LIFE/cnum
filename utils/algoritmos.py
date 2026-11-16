@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def bissecao(f,     # função que queremos encontrar a raiz
               a,    # a início do intervalo
               b,    # b fim do intervalo
@@ -21,3 +24,33 @@ def bissecao(f,     # função que queremos encontrar a raiz
             i += 1
             ERRO = abs(f(b) - f(a))
         return c, i
+
+
+def newton(x, y):
+    x = np.asarray(x, dtype=float)
+    a = np.array(y, dtype=float)
+    n = len(x)
+    for j in range(1, n):
+        a[j:] = (a[j:] - a[j - 1:-1]) / (x[j:] - x[:n - j])
+    p = np.array([a[-1]])
+    for k in range(n - 2, -1, -1):
+        p = np.polysub(np.polymul(p, [1.0, -x[k]]), [-a[k]])
+    return p
+
+
+def lagrange(x, y):
+    x = np.asarray(x, dtype=float)
+    y = np.asarray(y, dtype=float)
+    p = np.zeros(1)
+    for i in range(len(x)):
+        base = np.array([1.0])
+        for j in range(len(x)):
+            if j != i:
+                base = np.polymul(base, [1.0, -x[j]]) / (x[i] - x[j])
+        p = np.polyadd(p, y[i] * base)
+    return p
+
+
+def polinomial(x, y):
+    x = np.asarray(x, dtype=float)
+    return np.linalg.solve(np.vander(x, len(x)), np.asarray(y, dtype=float))
