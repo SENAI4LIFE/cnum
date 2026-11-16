@@ -54,3 +54,8 @@ def lagrange(x, y):
 def polinomial(x, y):
     x = np.asarray(x, dtype=float)
     return np.linalg.solve(np.vander(x, len(x)), np.asarray(y, dtype=float))
+
+
+def regressao(x, y, v):
+    V = v(np.asarray(x, dtype=float))
+    return np.linalg.solve(V.T @ V, V.T @ np.asarray(y, dtype=float))
