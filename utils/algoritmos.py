@@ -59,3 +59,15 @@ def polinomial(x, y):
 def regressao(x, y, v):
     V = v(np.asarray(x, dtype=float))
     return np.linalg.solve(V.T @ V, V.T @ np.asarray(y, dtype=float))
+
+
+def dp(f, x, h):
+    return (f(x + h) - f(x)) / h
+
+
+def dr(f, x, h):
+    return (f(x) - f(x - h)) / h
+
+
+def dc(f, x, h):
+    return (f(x + h) - f(x - h)) / (2 * h)
